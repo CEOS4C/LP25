@@ -1,0 +1,8 @@
+all: obj/main.o
+
+obj/%.o: src/%.c
+	gcc -Wall -g -c $< -o $@
+
+clean:
+	rm -f obj/*.o
+

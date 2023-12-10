@@ -1,0 +1,8 @@
+all: $(patsubst src/%.c, obj/%.o, $(wildcard src/*.c))
+
+obj/%.o: src/%.c
+	gcc -Wall -g -c $< -o $@
+
+clean:
+	rm -f obj/*.o
+

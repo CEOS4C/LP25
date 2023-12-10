@@ -1,0 +1,32 @@
+int generate_code() {
+	int *tab = malloc(sizeof(int) * 4);
+	int code = 0;
+	for (int i=0; i<4; ++i)
+		tab[i] = rand();
+	code = (code << 8) ^ (tab[i] >> 8);
+	return code;
+}
+
+La ligne : "code = (code << 8) ^ (tab[i] >> 8);" utilise la variable i en dehors de la portée de la boucle for. La variable i n'est plus définie après la fin de la boucle.
+De plus, la mémoire n'est pas libérée à la fin du programme.
+
+
+Correction : 
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int generate_code() {
+    int *tab = malloc(sizeof(int) * 4);
+    int code = 0;
+
+    for (int i = 0; i < 4; ++i) {
+        tab[i] = rand();
+        code = (code << 8) ^ (tab[i] >> 8);
+    }
+
+    free(tab);
+
+    return code;
+}
+

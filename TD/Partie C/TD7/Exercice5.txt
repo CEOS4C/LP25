@@ -1,0 +1,17 @@
+char *remove_leading_spaces(char *str) {
+	while (isspace(*str))
+		++str;
+	return str;
+}
+
+Erreur : manque ctype.h
+
+Correction : 
+
+#include <ctype.h>
+
+char *remove_leading_spaces(char *str) {
+	while (isspace(*str))
+		++str;
+	return str;
+}
